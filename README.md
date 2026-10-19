@@ -44,6 +44,7 @@ Requires Python 3.10 or later.
 
 ```bash
 pip install fanar-mcp          # or run it without installing: uvx fanar-mcp
+uvx --from git+https://github.com/Blade-Labs/fanar-mcp fanar-mcp   # straight from GitHub
 ```
 
 Claude Desktop (`claude_desktop_config.json`):
