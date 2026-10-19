@@ -1,5 +1,8 @@
 # fanar-mcp
 
+<!-- mcp-name: io.github.Blade-Labs/fanar-mcp -->
+<!-- mcp-name: io.github.blade-labs/fanar-mcp -->
+
 A [Model Context Protocol](https://modelcontextprotocol.io) server for [Fanar](https://fanar.qa), the
 Arabic-centric generative AI platform built by QCRI at Hamad Bin Khalifa University. It gives any MCP
 client (Claude Desktop, Claude Code, Cursor, and other agent harnesses) Fanar's chat models, cited Islamic

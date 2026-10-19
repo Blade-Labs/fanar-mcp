@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Blade-Labs/fanar-mcp",
+  "title": "Fanar",
+  "description": "Fanar (QCRI) for MCP: cited Islamic Q&A, Qur'an and hadith checks, Arabic translation and speech",
+  "repository": {
+    "url": "https://github.com/Blade-Labs/fanar-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "fanar-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FANAR_API_KEY",
+          "description": "Your Fanar API key, requested at https://api.fanar.qa/request",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
