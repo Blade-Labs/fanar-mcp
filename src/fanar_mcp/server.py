@@ -94,13 +94,14 @@ def fanar_chat(prompt: str, model: str = "Fanar-C-2-27B", system: str | None = N
 
 
 @mcp.tool()
-def fanar_islamic_qa(question: str, model: str = "Fanar-Sadiq", madhab: str | None = None,
+def fanar_islamic_qa(question: str, model: str = "Fanar-Sadiq", madhab: list[str] | str | None = None,
                      restrict_to_islamic: bool | None = None, preferred_sources: list[str] | None = None,
                      exclude_sources: list[str] | None = None, max_tokens: int = 1024) -> dict:
     """Ask Fanar-Sadiq an Islamic question and get an answer grounded in cited sources such as the
     Qur'an, hadith collections and fatwa collections. Show the references with the answer and present
     it as a cited answer, never as a fatwa. Fanar-Sadiq-2 adds madhab and source filters when your key
-    is entitled to it. About 50 requests a minute."""
+    is entitled to it; madhab is a list such as ["hanafi"], from all, hanafi, maliki, shafii and hanbali.
+    About 50 requests a minute."""
     resp = _run(lambda: _client().chat(
         model, [{"role": "user", "content": question}], max_tokens=max_tokens, madhab=madhab,
         restrict_to_islamic=restrict_to_islamic, preferred_sources=preferred_sources,

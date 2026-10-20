@@ -40,6 +40,16 @@ def test_chat_payload_drops_none_params_and_sends_bearer():
                                         "max_tokens": 50}
 
 
+def test_chat_sends_madhab_as_a_list():
+    # The API rejects madhab="hanafi" with 422 "Input should be a valid list" (measured 2026-10-20).
+    t = FakeTransport(body=json.dumps({"choices": [{"message": {"content": "ok"}}]}).encode())
+    c = client(t)
+    c.chat("Fanar-Sadiq", [{"role": "user", "content": "q"}], madhab="hanafi")
+    c.chat("Fanar-Sadiq", [{"role": "user", "content": "q"}], madhab=["maliki", "shafii"])
+    assert json.loads(t.calls[0]["data"])["madhab"] == ["hanafi"]
+    assert json.loads(t.calls[1]["data"])["madhab"] == ["maliki", "shafii"]
+
+
 def test_translate_payload():
     t = FakeTransport(body=b'{"text": "x"}')
     client(t).translate("salam", "ar-en")

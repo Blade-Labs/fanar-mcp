@@ -155,6 +155,9 @@ class FanarClient:
     def chat(self, model: str, messages: list[dict], **params: Any) -> FanarResponse:
         body = {"model": model, "messages": messages}
         body.update({k: v for k, v in params.items() if v is not None})
+        # The API types madhab as a list and rejects a bare string with 422 (measured 2026-10-20).
+        if isinstance(body.get("madhab"), str):
+            body["madhab"] = [body["madhab"]]
         return self.request("POST", "/chat/completions", json_body=body)
 
     def translate(self, text: str, langpair: str, model: str = "Fanar-3.0-Shaheen-Translate",
